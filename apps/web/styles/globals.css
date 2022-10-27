@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.markdown h2 {
+  @apply text-3xl;
+  @apply font-bold;
+  @apply border-b;
+  @apply border-slate-500;
+  @apply pb-2;
+  @apply mb-3;
+}
+
+.markdown h3 {
+  @apply text-xl;
+  @apply font-bold;
+}
+
+.markdown ul {
+  @apply list-disc;
+  @apply pl-3;
+}
