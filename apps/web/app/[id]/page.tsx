@@ -10,7 +10,7 @@ export default async function Page({ params }: IPageProps) {
 
   return (
     <section>
-      <h1>{data.tag_name}</h1>
+      <h1 className={"text-4xl"}>{data.tag_name}</h1>
       <div>
         <span>
           <Image

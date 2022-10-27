@@ -1,4 +1,7 @@
 import "../styles/globals.css";
+import { Roboto } from "@next/font/google";
+
+const robotoNormal = Roboto({ weight: "400" });
 
 export default function RootLayout({
   children,
@@ -6,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html className={robotoNormal.className}>
       <head></head>
       <body className="min-h-screen grid grid-rows-[5rem_auto] grid-cols-5 bg-white dark:bg-slate-800 text-slate-800 dark:text-white">
         <header className="border-solid border-b-2 row-span-1 col-span-5 flex items-center">
