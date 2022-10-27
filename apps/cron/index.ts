@@ -1,19 +1,14 @@
-import { getReleases } from './getNewReleases.ts';
 import { processReleaseData } from './processReleaseData.ts';
+import { createFirestore } from './setupFireStore.ts';
 // import {cron, everyMinute, daily, monthly, weekly} from 'https://deno.land/x/deno_cron/cron.ts';
 
+const db = createFirestore();
 
-// This should be cron'ed:
-const processednewReleases =  await processReleaseData(
-    await getReleases()
-
-    // Remember to also step through the github pagination so we get all releases!
-);
+//  Cron this. Once a day is OK. Run at 3.37 AM or something
+await processReleaseData(db);
 
 
 
-
-// Run getNewReleases once a day, using a cron job.
 
 /* Cron example:
     everyMinute(()=>{console.log("Runs every minute")});
@@ -22,25 +17,29 @@ const processednewReleases =  await processReleaseData(
 
 
 /* 
-Get data about the releases
-    ✔️ Authenticate with a github API token
-    ✔️ Get new releases (from the relevant Git API endpoint)
-        Remember! Step through the pagination
+❗ Get data about the releases
+    ✔️ Authenticate with GitHub API access token
+    ✔️ Get releases from GitHub API, but...
+    ❗  Only for NEW releases
+       Step through the pagination
 
 ✔️ Process release data
     Filter out any releases 
         ✔️ without a body, and/or
         ✔️ no MD H3 tag in body
 
-Save (push) the new releases in FireStore:
-    body
-    date
-    version
-    ...rest (?) - could potentially push all of it. 
+✔️ Save (push) the new releases to FireStore:
+   ✔️ just include all of the data.
 
-Make a cron job that does this:
-    once a day?
-    once an hour?
+❗ Only do it for new releases! 
+    Get the timestamp from the newest (first) release in DB
+    Only fetch releases newer than that timestamp
 
-Deploy with Deno Deploy. Let it simmer.
+❗ Make a cron job that does this:
+    once a day
+    at 3.37 in the night
+
+❗ Deploy with Deno Deploy
+    Let it simmer. Forever.
+
 */
