@@ -8,11 +8,11 @@ export default function RootLayout({
   return (
     <html>
       <head></head>
-      <body className="grid grid-rows-[5rem_auto] grid-cols-5">
-        <header className="row-span-1 col-span-1">
-          <h1 className="text-xl p-4">GCC Release Dashboard</h1>
+      <body className="min-h-screen grid grid-rows-[5rem_auto] grid-cols-5">
+        <header className="border-solid border-b-2 row-span-1 col-span-5 flex items-center">
+          <h1 className="text-xl p-2">🏷️ GCC Release Dashboard</h1>
         </header>
-        <aside className="row-span-2 col-span-1 p-2">Sidebar</aside>
+        <aside className="row-span-2 col-span-1 p-2 border-solid border-r-2">Sidebar</aside>
         <main className="row-span-2 col-start-2 col-span-4 p-2">
           {children}
         </main>
