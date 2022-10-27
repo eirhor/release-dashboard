@@ -78,8 +78,6 @@ w
 G.idea/sonarlint/issuestore/3/5/35f6f13c7d74143175f8abf200c84c0ef17ab843,8\5\851619545149317c67b64ee6b0abf651d250db21
 w
 G.idea/sonarlint/issuestore/1/c/1c838c5da45dc56dbd95ac099cf2a4f5f2ea20bd,6\8\68bba182acffa07ea7a4a1b7856aeceefb345fad
-<
-package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 w
 G.idea/sonarlint/issuestore/f/0/f05b320d8833008cc7359ba2d707690df463dc2c,0\1\01f783baef46954d3ef5f96fc548fe2a22f2e826
 w
