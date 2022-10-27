@@ -1,17 +1,27 @@
-export async function processReleaseData(releaseData) {
-    const filteredReleases = releaseData.filter(release => release.body?.match(/###/))
+import { doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js'
+import { getReleases } from './getNewReleases.ts';
 
-    filteredReleases.map(release => {
-        console.log({tag_name: release.tag_name, body: release.body})
-    });
-
-    console.info("%c------------------------------------------------------", "color: yellow;")
-
-    // put the filtered releases in firestore
-
-    return true;
-
-    
+function persistRelease(db: any): any {
+    return async (release) => { 
+       //  await setDoc(doc(db, "releases", release.tag_name), release); 
+        console.log("%cPersisted to Firestore DB:", "color: green; font-weight: bold;", release.tag_name);
+    };
+}
 
 
+export async function processReleaseData(db, pageCount = 0) {
+    const releases = await getReleases(pageCount);
+
+    console.log("# of 'new' releases", releases.length)
+
+    if (releases.length) {
+        releases
+        .filter(release => release.body?.match(/###/))
+        .map(persistRelease(db))
+        
+        // Try another page:
+        processReleaseData(db, ++pageCount)
+    }
+
+    return;
 }
