@@ -20,5 +20,5 @@ export interface IPageProps {
 export default async function Page({ params }: IPageProps) {
   const data = await fetchReleaseDetails(params["id"] as string);
 
-    return <section>Release details here</section>;
+  return <section>Release details here</section>;
 }
