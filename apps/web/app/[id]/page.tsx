@@ -1,34 +1,12 @@
-import type { ParsedUrlQuery } from "querystring";
 import Image from "next/image";
 import { BsTag } from "react-icons/bs";
 import { FiGitCommit } from "react-icons/fi";
 import ReactMarkdown from "react-markdown";
-
-export const fetchReleaseDetails = (id: string) => {
-  return fetch(
-    `https://api.github.com/repos/Geta/component-libraries/releases/${id}`,
-    {
-      headers: {
-        Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${process.env.GH_ACCESS_TOKEN}`,
-      },
-    }
-  ).then((r) => {
-    if (r.status !== 200) {
-      throw Error(r.statusText);
-    }
-
-    return r.json();
-  });
-};
-
-export interface IPageProps {
-  params: ParsedUrlQuery;
-  searchParams: ParsedUrlQuery;
-}
+import { getReleaseDetails } from "../../utils/get-release-details";
+import { IPageProps } from "../../types/page-props";
 
 export default async function Page({ params }: IPageProps) {
-  const data = await fetchReleaseDetails(params["id"] as string);
+  const data = await getReleaseDetails(params["id"] as string);
 
   return (
     <section>
