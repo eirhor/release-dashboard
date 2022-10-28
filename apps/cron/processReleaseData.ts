@@ -1,5 +1,6 @@
 import { doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js'
 import { getReleases } from './getNewReleases.ts';
+import { newestReleaseDateInFirebase } from './newestReleaseDateInFirebase';
 
 function persistRelease(db: any): any {
     return async (release) => { 
@@ -10,6 +11,7 @@ function persistRelease(db: any): any {
 
 
 export async function processReleaseData(db, pageCount = 0) {
+    const newestRelease = await newestReleaseDateInFirebase(db);
     const releases = await getReleases(pageCount);
 
     console.log("# of 'new' releases", releases.length)
