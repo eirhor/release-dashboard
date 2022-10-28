@@ -5,8 +5,8 @@ import { createFirestore } from './setupFireStore.ts';
 const db = createFirestore();
 
 //  Cron this. Once a day is OK. Run at 3.37 AM or something
-const count = await processReleaseData(db);
-console.info(`%c${count}%c releases persisted to Firestore (collection: "releases").`, "color: green; font-weight: bold;", "color: unset; font-weight: unset;");
+console.info(`%cInitiating%c\tPreparing to fetch release data from Github and store new releases to Firestore.`, "color: green; font-weight: bold;", "color: yellow; font-weight: unset;");
+processReleaseData(db);
 
 
 
